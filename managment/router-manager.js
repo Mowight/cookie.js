@@ -1,4 +1,5 @@
 import Alone from './alon-manager.js'
+import alonex from '../src/store/index.js'
 
 export default class Router {
     constructor(roots) {
@@ -20,7 +21,7 @@ export default class Router {
             if (path === pathName) {
                 new Alone(
                     document.getElementById("seed"),
-                    page()
+                    page(alonex)
                 ).createAlone()
 
                 break;
