@@ -5,6 +5,14 @@ export default class Alonex {
         this.actions = {}
     }
 
+    start(methodName, data) {
+        if (this.methods[methodName] !== undefined) {
+            this.methods[methodName](this.state, data)
+        } else {
+            console.error(`${methodName} is not a method`)
+        }
+    }
+
     createStore(alonexSeed) {
         const {
             state,

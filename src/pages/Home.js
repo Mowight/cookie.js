@@ -1,12 +1,10 @@
 export const Home = (alonex) => {
-    const { state } = alonex
-
     return {
         html: (`
-            <h1> ${state.title} </h1>
+            <h1> Alon.js App </h1>
         `),
         afterLoad() {
-            console.log("Home")
+            console.log("Home page")
         }
     }
 }

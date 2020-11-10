@@ -5,9 +5,7 @@ const alonex = new Alonex()
 alonex.createStore({
     firstEmployee: {},
     lastEmployee: {},
-    state: {
-        title: "Alone.js App"
-    },
+    state: {},
     methods: {},
     actions: {}
 })

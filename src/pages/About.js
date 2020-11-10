@@ -1,13 +1,10 @@
 export const About = (alonex) => {
-    const { state } = alonex
-
     return {
         html: (`
-            <h1> ${state.title} </h1>
-            <h3> page: About </h3>
+            <h1> About </h1>
         `),
         afterLoad() {
-            console.log(state)
+            console.log("About page")
         }
     }
 }
