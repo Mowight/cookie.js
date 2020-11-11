@@ -10,8 +10,9 @@ export default class Router {
         return window.location.pathname
     }
 
-    createRouter() {
+    createRouter(defaultPage) {
         const { roots, getPathName } = this
+        let defaultCount = 0
 
         for (let count in roots) {
             const path = roots[count].path
@@ -25,7 +26,16 @@ export default class Router {
                 ).createAlone()
 
                 break;
+            } else {
+                defaultCount++
             }
+        }
+
+        if (defaultCount >= roots.length) {
+            new Alone(
+                document.getElementById("seed"),
+                defaultPage()
+            ).createAlone()
         }
     }
 }

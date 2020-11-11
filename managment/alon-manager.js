@@ -15,7 +15,7 @@ export default class Alone {
             } else {
                 reject("html not returned")
             }
-        }).then((res) => res ? afterLoad() : null)
+        }).then((res) => res ? (afterLoad !== undefined ? afterLoad() : null) : null)
         .catch(err => console.error(err))
     }
 }
