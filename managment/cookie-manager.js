@@ -1,10 +1,10 @@
-export default class Alone {
+export default class Cookie {
     constructor(root, node) {
         this.root = root
         this.node = node
     }
 
-    createAlone() {
+    createCookie() {
         const { root, node } = this
         const { html, afterLoad } = node
 

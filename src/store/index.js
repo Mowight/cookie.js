@@ -1,8 +1,8 @@
-import Alonex from '../../managment/alonex-manager.js'
+import Coox from '../../managment/coox-manager.js'
 
-const alonex = new Alonex()
+const coox = new Coox()
 
-alonex.createStore({
+coox.createStore({
     firstEmployee: {},
     lastEmployee: {},
     state: {},
@@ -10,4 +10,4 @@ alonex.createStore({
     actions: {}
 })
 
-export default alonex
+export default coox

@@ -1,5 +1,5 @@
-import Alone from './alon-manager.js'
-import alonex from '../src/store/index.js'
+import Cookie from './cookie-manager.js'
+import coox from '../src/store/index.js'
 
 export default class Router {
     constructor(roots) {
@@ -20,10 +20,10 @@ export default class Router {
             const pathName = getPathName()
 
             if (path === pathName) {
-                new Alone(
+                new Cookie(
                     document.getElementById("seed"),
-                    page(alonex)
-                ).createAlone()
+                    page(coox)
+                ).createCookie()
 
                 break;
             } else {
@@ -32,10 +32,10 @@ export default class Router {
         }
 
         if (defaultCount >= roots.length) {
-            new Alone(
+            new Cookie(
                 document.getElementById("seed"),
                 defaultPage()
-            ).createAlone()
+            ).createCookie()
         }
     }
 }

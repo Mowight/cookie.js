@@ -7,7 +7,7 @@ export default class Config {
         if (title !== undefined) {
             document.head.innerHTML += (`<title> ${title} </title>`)
         } else {
-            document.head.innerHTML += (`<title> Alone App </title>`)
+            document.head.innerHTML += (`<title> Cookie App </title>`)
         }
     }
 

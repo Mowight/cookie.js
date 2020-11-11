@@ -1,12 +1,11 @@
 import { Message } from '../components/message.js'
-import { setCss } from '../static/tools.js'
 
-export const Home = (alonex) => {
+export const Home = (coox) => {
     const message = Message({name: "User", message: "Hello", emj: true})
 
     return {
         html: (`
-            <h1> Alon.js App </h1>
+            <h1> Cookie.js App </h1>
             ${message.html}
         `),
         afterLoad() {

@@ -1,4 +1,4 @@
-export default class Alonex {
+export default class Coox {
     constructor() {
         this.state = {}
         this.methods = {}
@@ -13,14 +13,14 @@ export default class Alonex {
         }
     }
 
-    createStore(alonexSeed) {
+    createStore(cooxSeed) {
         const {
             state,
             methods,
             actions,
             firstEmployee,
             lastEmployee
-        } = alonexSeed
+        } = cooxSeed
 
         new Promise((resolve, reject) => {
             for (const prop in firstEmployee) {

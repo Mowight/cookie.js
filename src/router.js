@@ -3,7 +3,7 @@ import { Home } from './pages/Home.js'
 import { About } from './pages/About.js'
 import { DefaultRequire } from './static/default-require.js'
 
-const roots = [
+const cookieRoots = [
     {
         path: "/",
         page: Home
@@ -14,4 +14,4 @@ const roots = [
     }
 ]
 
-new Router(roots).createRouter(DefaultRequire)
+new Router(cookieRoots).createRouter(DefaultRequire)

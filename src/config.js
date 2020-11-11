@@ -1,7 +1,7 @@
 import Config from '../managment/config-manager.js'
 
 const settings = {
-    title: "Example Alone.js App",
+    title: "Example Cookie.js App",
     styles: [
         { rel: "stylesheet", fileName: "index.css" }
     ],

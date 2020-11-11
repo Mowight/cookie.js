@@ -1,4 +1,4 @@
-export const About = (alonex) => {
+export const About = (coox) => {
     return {
         html: (`
             <h1> About </h1>
