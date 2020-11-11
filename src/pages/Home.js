@@ -7,7 +7,7 @@ export const Home = (alonex) => {
             ${Message({name: "Polat", message: "Hello", emj: true})}
         `),
         afterLoad() {
-            // console.log("Home page")
+            console.log("Home page")
         }
     }
 }
