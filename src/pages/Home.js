@@ -1,4 +1,5 @@
 import { Logo } from '../components/logo.js'
+import { NavLink } from '../components/NavLink.js'
 
 export const Home = (coox) => {
     return {
@@ -7,10 +8,10 @@ export const Home = (coox) => {
             <h1 class="title"> Cookie.js </h1>
             <hr />
             <div class="links">
-                <a href="https://github.com/polat-poyraz"> I am GitHub Profile </a>
-                <a href="https://github.com/polat-poyraz/cookie.js"> Cookie.js Repository </a>
-                <a href="https://github.com/polat-poyraz/cookie.js"> Document </a>
-                <a href="/about"> About </a>
+                ${NavLink({path: "https://github.com/polat-poyraz", text: "I am GitHub Profile"})}
+                ${NavLink({path: "https://github.com/polat-poyraz/cookie.js", text: "Cookie.js Repository"})}
+                ${NavLink({path: "https://github.com/polat-poyraz/cookie.js", text: "Document"})}
+                ${NavLink({path: "/about", text: "About"})}
             </div>
         `),
         afterLoad() {
