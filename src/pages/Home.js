@@ -1,16 +1,20 @@
-import { Message } from '../components/message.js'
+import { Logo } from '../components/logo.js'
 
 export const Home = (coox) => {
-    const message = Message({name: "User", message: "Hello", emj: true})
-
     return {
         html: (`
-            <h1> Cookie.js App </h1>
-            ${message.html}
+            ${Logo()}
+            <h1 class="title"> Cookie.js </h1>
+            <hr />
+            <div class="links">
+                <a href="https://github.com/polat-poyraz"> I am GitHub Profile </a>
+                <a href="https://github.com/polat-poyraz/cookie.js"> Cookie.js Repository </a>
+                <a href="https://github.com/polat-poyraz/cookie.js"> Document </a>
+                <a href="/about"> About </a>
+            </div>
         `),
         afterLoad() {
             console.log("Home page")
-            message.afterLoad()
         }
     }
 }
