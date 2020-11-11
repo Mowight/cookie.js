@@ -10,6 +10,18 @@ export const addHtml = (id, newContent) => {
     .innerHTML += typeof newContent === "function" ? newContent() : newContent
 }
 
+export const setCss = (id, css) => {
+    const el = document.querySelector(id)
+
+    for (const prop in css) {
+        if (el.style[prop] !== undefined) {
+            el.style[prop] = css[prop]
+        } else {
+            console.error(`No CSS keys worth ${prop}`)
+        }
+    }
+}
+
 export const addEvent = (id, eventName, eventContent) => {
     document.querySelector(id).addEventListener(eventName, eventContent)
 }

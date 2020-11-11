@@ -9,9 +9,14 @@ export const Message = (props) => {
         emj: types.bool(false),
     })
 
-    return (`
-        <h1>
-            ${props.name}: ${props.message} ${props.emj ? ':D' : ''}
-        </h1>
-    `)
+    return {
+        html: (`
+            <h1>
+                ${props.name}: ${props.message} ${props.emj ? ':D' : ''}
+            </h1>
+        `),
+        afterLoad() {
+            console.log("component build...")
+        }
+    }
 }
