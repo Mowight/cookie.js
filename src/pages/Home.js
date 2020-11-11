@@ -1,3 +1,5 @@
+import { addEvent } from '../tools/tools.js'
+
 export const Home = (alonex) => {
     return {
         html: (`
