@@ -1,13 +1,22 @@
 export const typesConsumer = () => {
     const types = {
-        string: (req) => {
+        String: (req) => {
             return {type: "string", isRequire: req}
         },
-        bool: (req) => {
+        Bool: (req) => {
             return {type: "boolean", isRequire: req}
         },
-        number: (req) => {
+        Number: (req) => {
             return {type: "number", isRequire: req}
+        },
+        Object: (req) => {
+            return {type: "object", isRequire: req}
+        },
+        Function: (req) => {
+            return {type: "function", isRequire: req}
+        },
+        Symbol: (req) => {
+            return {type: "symbol", isRequire: req}
         }
     }
 
