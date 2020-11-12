@@ -1,3 +1,5 @@
+import { Template } from '../src/Template.js'
+
 export default class Cookie {
     constructor(root, node) {
         this.root = root
@@ -10,7 +12,7 @@ export default class Cookie {
 
         new Promise((resolve, reject) => {
             if (html !== undefined) {
-                root.innerHTML = html
+                root.innerHTML = Template(html)
                 resolve(true)
             } else {
                 reject("html object not found please return html value as object in your pages")

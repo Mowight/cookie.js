@@ -8,10 +8,6 @@ body {
     margin: 0;
 }
 
-* {
-    -webkit-user-select: none;
-}
-
 body > div {
     width: 100%;
 }
@@ -46,14 +42,9 @@ a {
     width: max-content;
     margin: auto;
     margin-top: 1em;
+    -webkit-user-select: none;
 }
 
 a:hover {
     text-decoration: underline;
-}
-
-hr {
-    width: 80%;
-    border: none;
-    border-top: 1px solid var(--grey);
 }
