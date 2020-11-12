@@ -1,5 +1,5 @@
 import Cookie from './cookie-manager.js'
-import coox from '../src/store/index.js'
+import cooxConsumer from '../src/store/index.js'
 
 export default class Router {
     constructor(roots) {
@@ -11,6 +11,7 @@ export default class Router {
     }
 
     createRouter(defaultPage) {
+
         const { roots, getPathName } = this
         let defaultCount = 0
 
@@ -22,7 +23,7 @@ export default class Router {
             if (path === pathName) {
                 new Cookie(
                     document.getElementById("seed"),
-                    page(coox)
+                    page(cooxConsumer)
                 ).createCookie()
 
                 break;

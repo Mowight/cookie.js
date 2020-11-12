@@ -1,8 +1,8 @@
 export default class Coox {
-    constructor() {
-        this.state = {}
-        this.methods = {}
-        this.actions = {}
+    constructor(state, methods, actions) {
+        this.state = state
+        this.methods = methods
+        this.actions = actions
     }
 
     start(methodName, data) {
@@ -11,32 +11,5 @@ export default class Coox {
         } else {
             console.error(`${methodName} is not a method`)
         }
-    }
-
-    createStore(cooxSeed) {
-        const {
-            state,
-            methods,
-            actions,
-            firstEmployee,
-            lastEmployee
-        } = cooxSeed
-
-        new Promise((resolve, reject) => {
-            for (const prop in firstEmployee) {
-                firstEmployee[prop]()
-            }
-
-            resolve(true)
-        })
-        .then(() => this.state = state)
-        .then(() => this.methods = methods)
-        .then(() => this.actions = actions)
-        .then(() => {
-            for (const prop in lastEmployee) {
-                lastEmployee[prop]({state: this.state})
-            }
-        })
-
     }
 }

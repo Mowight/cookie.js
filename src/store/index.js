@@ -1,8 +1,6 @@
 import Coox from '../../managment/coox-manager.js'
 
-const coox = new Coox()
-
-coox.createStore({
+const cooxConsumer = new Coox({
     firstEmployee: {},
     lastEmployee: {},
     state: {
@@ -12,4 +10,4 @@ coox.createStore({
     actions: {}
 })
 
-export default coox
+export default cooxConsumer.state
