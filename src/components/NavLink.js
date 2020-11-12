@@ -4,8 +4,8 @@ export const NavLink = (props) => {
     const types = typesConsumer()
 
     propTypesControl(props).controls({
-        path: types.string(true),
-        text: types.string(true)
+        path: types.String(true),
+        text: types.String(true)
     })
 
     return (`<a href="${props.path}"> ${props.text} </a>`)
