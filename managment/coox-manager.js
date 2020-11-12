@@ -1,8 +1,10 @@
 export default class Coox {
-    constructor(state, methods, actions) {
-        this.state = state
-        this.methods = methods
-        this.actions = actions
+    constructor(props) {
+        this.firstEmployee = props.firstEmployee
+        this.lastEmployee = props.lastEmployee
+        this.state = props.state
+        this.methods = props.methods
+        this.actions = props.actions
     }
 
     start(methodName, data) {
@@ -10,6 +12,16 @@ export default class Coox {
             this.methods[methodName](this.state, data)
         } else {
             console.error(`${methodName} is not a method`)
+        }
+    }
+
+    createCoox() {
+        for (const prop in this.firstEmployee) {
+            this.firstEmployee[prop]()
+        }
+
+        for (const prop in this.lastEmployee) {
+            this.lastEmployee[prop]()
         }
     }
 }

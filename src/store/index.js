@@ -2,7 +2,13 @@ import Coox from '../../managment/coox-manager.js'
 
 const cooxConsumer = new Coox({
     firstEmployee: {},
-    lastEmployee: {},
+    lastEmployee: {
+        addUsers() {
+            fetch("https://jsonplaceholder.typicode.com/posts/1")
+                .then(res => res.json())
+                .then(data => console.log(data))
+        }
+    },
     state: {
         title: "Cookie.js"
     },
@@ -10,4 +16,6 @@ const cooxConsumer = new Coox({
     actions: {}
 })
 
-export default cooxConsumer.state
+cooxConsumer.createCoox()
+
+export default cooxConsumer
