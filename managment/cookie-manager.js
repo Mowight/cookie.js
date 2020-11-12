@@ -1,3 +1,5 @@
+import { errorCookie } from './error-manager.js'
+
 export default class Cookie {
     constructor(root, node) {
         this.root = root
@@ -16,6 +18,9 @@ export default class Cookie {
                 reject("html not returned")
             }
         }).then((res) => res ? (afterLoad !== undefined ? afterLoad() : null) : null)
-        .catch(err => console.error(err))
+        .catch(() => errorCookie(
+            "html object not found",
+            "please return html value as object in your pages")
+        )
     }
 }

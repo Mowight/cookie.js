@@ -5,7 +5,9 @@ const coox = new Coox()
 coox.createStore({
     firstEmployee: {},
     lastEmployee: {},
-    state: {},
+    state: {
+        title: "Cookie.js"
+    },
     methods: {},
     actions: {}
 })
