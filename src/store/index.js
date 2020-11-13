@@ -1,8 +1,7 @@
 import Coox from '../../managment/coox-manager.js'
 
 const cooxConsumer = new Coox({
-    firstEmployee: {},
-    lastEmployee: {},
+    first: ({state, actions}) => {},
     state: {},
     methods: {},
     actions: {}

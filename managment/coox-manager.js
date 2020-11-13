@@ -14,11 +14,26 @@ export default class Coox {
         }
     }
 
+    uses(useList) {
+        for (const prop in useList) {
+            const argument = useList[prop]
+            const methodName = prop
+
+            if (this.methods[methodName] !== undefined) {
+                this.methods[methodName](this.state, argument)
+            } else {
+                console.error(`Could not find a method named ${prop}`)
+            }
+        }
+    }
+
     createCoox() {
-        this.first({
-            state: this.state,
-            actions: this.actions
-        })
+        if (this.first !== undefined) {
+            this.first({
+                state: this.state,
+                actions: this.actions
+            })
+        }
 
         if (this.state === undefined) {
             console.error("state not found in coox")

@@ -14,7 +14,7 @@ export const Home = (coox) => {
             </div>
         `),
         afterLoad() {
-            console.log("Home page")
+            console.log("Home")
         }
     }
 }
