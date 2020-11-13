@@ -1,7 +1,3 @@
-const defaultValue = (defaultValue) => {
-    return defaultValue
-}
-
 export const typesConsumer = () => {
     const types = {
         String: (req, defaultValue) => {
@@ -42,7 +38,7 @@ export const propTypesControl = (props) => {
                 if (controls[prop].isRequire) {
                     console.error(`"${prop}" who was supposed to come did not come`)
                 }
-                
+
                 if (controls[prop].default !== undefined) {
                     props[prop] = controls[prop].default
                 }
