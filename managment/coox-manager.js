@@ -1,7 +1,6 @@
 export default class Coox {
     constructor(props) {
-        this.firstEmployee = props.firstEmployee
-        this.lastEmployee = props.lastEmployee
+        this.first = props.first
         this.state = props.state
         this.methods = props.methods
         this.actions = props.actions
@@ -16,12 +15,21 @@ export default class Coox {
     }
 
     createCoox() {
-        for (const prop in this.firstEmployee) {
-            this.firstEmployee[prop]()
+        this.first({
+            state: this.state,
+            actions: this.actions
+        })
+
+        if (this.state === undefined) {
+            console.error("state not found in coox")
         }
 
-        for (const prop in this.lastEmployee) {
-            this.lastEmployee[prop]()
+        if (this.methods === undefined) {
+            console.error("methods not found in coox")
+        }
+
+        if  (this.actions === undefined) {
+            console.error("actions not found in coox")
         }
     }
 }
