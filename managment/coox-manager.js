@@ -7,7 +7,7 @@ export default class Coox {
         this.actions = props.actions
     }
 
-    start(methodName, data) {
+    use(methodName, data) {
         if (this.methods[methodName] !== undefined) {
             this.methods[methodName](this.state, data)
         } else {
