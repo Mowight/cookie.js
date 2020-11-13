@@ -1,22 +1,26 @@
+const defaultValue = (defaultValue) => {
+    return defaultValue
+}
+
 export const typesConsumer = () => {
     const types = {
-        String: (req) => {
-            return {type: "string", isRequire: req}
+        String: (req, defaultValue) => {
+            return {type: "string", isRequire: req, default: defaultValue}
         },
-        Bool: (req) => {
-            return {type: "boolean", isRequire: req}
+        Bool: (req, defaultValue) => {
+            return {type: "boolean", isRequire: req, default: defaultValue}
         },
-        Number: (req) => {
-            return {type: "number", isRequire: req}
+        Number: (req, defaultValue) => {
+            return {type: "number", isRequire: req, default: defaultValue}
         },
-        Object: (req) => {
-            return {type: "object", isRequire: req}
+        Object: (req, defaultValue) => {
+            return {type: "object", isRequire: req, default: defaultValue}
         },
-        Function: (req) => {
-            return {type: "function", isRequire: req}
+        Function: (req, defaultValue) => {
+            return {type: "function", isRequire: req, default: defaultValue}
         },
-        Symbol: (req) => {
-            return {type: "symbol", isRequire: req}
+        Symbol: (req, defaultValue) => {
+            return {type: "symbol", isRequire: req, default: defaultValue}
         }
     }
 
@@ -26,6 +30,7 @@ export const typesConsumer = () => {
 export const propTypesControl = (props) => {
     const controls = (controls) => {
         for (const prop in controls) {
+
             if (props[prop] !== undefined) {
                 const getType = typeof props[prop]
                 const reqType = controls[prop].type
@@ -36,6 +41,10 @@ export const propTypesControl = (props) => {
             } else {
                 if (controls[prop].isRequire) {
                     console.error(`"${prop}" who was supposed to come did not come`)
+                }
+                
+                if (controls[prop].default !== undefined) {
+                    props[prop] = controls[prop].default
                 }
             }
         }

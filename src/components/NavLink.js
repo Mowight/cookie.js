@@ -4,7 +4,7 @@ export const NavLink = (props) => {
     const types = typesConsumer()
 
     propTypesControl(props).controls({
-        path: types.String(true),
+        path: types.String(false, "/"),
         text: types.String(true)
     })
 
