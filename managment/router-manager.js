@@ -21,9 +21,11 @@ export default class Router {
             const pathName = getPathName()
 
             if (path === pathName) {
+                const { state, actions } = cooxConsumer
+
                 new Cookie(
                     document.getElementById("seed"),
-                    page(cooxConsumer)
+                    page({state, actions})
                 ).createCookie()
 
                 break;
