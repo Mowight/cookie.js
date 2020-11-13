@@ -25,3 +25,15 @@ export const setCss = (id, css) => {
 export const addEvent = (id, eventName, eventContent) => {
     document.querySelector(id).addEventListener(eventName, eventContent)
 }
+
+export const get = (select) => {
+    return document.querySelector(select)
+}
+
+export const getAll = (select) => {
+    return document.querySelectorAll(select)
+}
+
+export const removeEl = (select) => {
+    document.querySelector(select).remove()
+}
