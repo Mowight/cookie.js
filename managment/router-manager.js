@@ -11,6 +11,7 @@ export default class Router {
     }
 
     createRouter(defaultPage) {
+        const CookieConsumer = new Cookie()
 
         const { roots, getPathName } = this
         let defaultCount = 0
@@ -23,10 +24,10 @@ export default class Router {
             if (path === pathName) {
                 const { state, actions } = cooxConsumer
 
-                new Cookie(
+                CookieConsumer.render(
                     document.getElementById("seed"),
                     page({state, actions})
-                ).createCookie()
+                )
 
                 break;
             } else {
@@ -35,10 +36,10 @@ export default class Router {
         }
 
         if (defaultCount >= roots.length) {
-            new Cookie(
+            CookieConsumer.render(
                 document.getElementById("seed"),
                 defaultPage()
-            ).createCookie()
+            )
         }
     }
 }

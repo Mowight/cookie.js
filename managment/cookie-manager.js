@@ -1,13 +1,11 @@
 import { Template } from '../src/Template.js'
 
 export default class Cookie {
-    constructor(root, node) {
-        this.root = root
-        this.node = node
+    use(useItem) {
+        this.content
     }
 
-    createCookie() {
-        const { root, node } = this
+    render(root, node) {
         const { html, afterLoad } = node
 
         new Promise((resolve, reject) => {
