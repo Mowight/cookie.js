@@ -37,3 +37,7 @@ export const getAll = (select) => {
 export const removeEl = (select) => {
     document.querySelector(select).remove()
 }
+
+export const setAttr = (select, attrName, attrValue) => {
+    document.querySelector(select).setAttribute(attrName, attrValue)
+}
