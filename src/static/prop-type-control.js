@@ -1,22 +1,22 @@
 export const typesConsumer = () => {
     const types = {
-        String: (req, defaultValue) => {
-            return {type: "string", isRequire: req, default: defaultValue}
+        String: (req, defaultValue, extraTypes) => {
+            return {type: "string", isRequire: req, default: defaultValue, extraTypes}
         },
-        Bool: (req, defaultValue) => {
-            return {type: "boolean", isRequire: req, default: defaultValue}
+        Bool: (req, defaultValue, extraTypes) => {
+            return {type: "boolean", isRequire: req, default: defaultValue, extraTypes}
         },
-        Number: (req, defaultValue) => {
-            return {type: "number", isRequire: req, default: defaultValue}
+        Number: (req, defaultValue, extraTypes) => {
+            return {type: "number", isRequire: req, default: defaultValue, extraTypes}
         },
-        Object: (req, defaultValue) => {
-            return {type: "object", isRequire: req, default: defaultValue}
+        Object: (req, defaultValue, extraTypes) => {
+            return {type: "object", isRequire: req, default: defaultValue, extraTypes}
         },
-        Function: (req, defaultValue) => {
-            return {type: "function", isRequire: req, default: defaultValue}
+        Function: (req, defaultValue, extraTypes) => {
+            return {type: "function", isRequire: req, default: defaultValue, extraTypes}
         },
-        Symbol: (req, defaultValue) => {
-            return {type: "symbol", isRequire: req, default: defaultValue}
+        Symbol: (req, defaultValue, extraTypes) => {
+            return {type: "symbol", isRequire: req, default: defaultValue, extraTypes}
         }
     }
 
@@ -26,13 +26,25 @@ export const typesConsumer = () => {
 export const propTypesControl = (props) => {
     const controls = (controls) => {
         for (const prop in controls) {
-
             if (props[prop] !== undefined) {
                 const getType = typeof props[prop]
                 const reqType = controls[prop].type
+                const extraTypes = controls[prop].extraTypes
 
                 if (getType !== reqType) {
-                    console.warn(`desired type "${reqType}", but incoming type "${getType}"`)
+                    if (extraTypes !== undefined) {
+                        let defaultCount = 0
+
+                        for (let i in extraTypes) {
+                            if (getType !== extraTypes[i]) {
+                                defaultCount++
+                            }
+                        }
+
+                        if (defaultCount === extraTypes.length) {
+                            console.warn(`desired type "${reqType}", but incoming type "${getType}" \n none of these types: ${extraTypes.join(", ")} \n Additional types you have entered may be misspelled.`)
+                        }
+                    }
                 }
             } else {
                 if (controls[prop].isRequire) {

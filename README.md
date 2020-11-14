@@ -227,7 +227,10 @@ export const NavLink = (props) => {
     */
     propTypesControl(props).controls({
         path: types.String(true, "/"),
-        text: types.String(false)
+        text: types.String(false, "", ["number, boolean"])
+        /*
+        girilen diğer array parametresi ise gelen prop un başka hangi değerlere sahip olabileceğini belirtir.
+        */
     })
 
     /*

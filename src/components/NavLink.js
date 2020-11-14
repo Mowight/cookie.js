@@ -11,7 +11,7 @@ export const NavLink = (props) => {
     })
 
     propTypesControl(props).controls({
-        path: types.String(false, "/"),
+        path: types.String(false, "/", ["string", "number"]),
         text: types.String(true)
     })
 
