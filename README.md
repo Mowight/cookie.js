@@ -52,7 +52,7 @@ store kalsöründe ise [coox](#coox) bulunur
 ## Başlarken
 Cookie.js npm e yüklenmemiştir. GitHub üzerinden örnek bir cookie.js dosyası indirerek başlayın.  
 Ardından terminal aracılığı ile cookie.js projenize girip
-``` npm install ``` yapın, bu sayede gerekli paketler indirilmiş olacaktır. Ardından ``` npm start ``` yaparak cookie.js projeniz ``` localhost:8000 ``` adresinde çalışmaya başlayacaktır.
+``` npm install ``` yapın, bu sayede gerekli paketler indirilmiş olacaktır. Ardından ``` npm start ``` yaparak cookie.js projeniz ``` localhost:1000 ``` adresinde çalışmaya başlayacaktır.
 
 <br>
 

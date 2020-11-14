@@ -7,4 +7,4 @@ app.use('/managment', express.static(path.join(__dirname, 'managment')))
 
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'))
-}).listen(8000)
+}).listen(1000)
