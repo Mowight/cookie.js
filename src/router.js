@@ -14,4 +14,4 @@ const cookieRoots = [
     }
 ]
 
-new Router(cookieRoots).createRouter(DefaultRequire)
+const router = new Router(cookieRoots).createRouter(DefaultRequire)

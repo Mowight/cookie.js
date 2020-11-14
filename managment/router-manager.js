@@ -1,4 +1,4 @@
-import Cookie from './cookie-manager.js'
+import { pageRender } from './page-render.js'
 import cooxConsumer from '../src/store/index.js'
 
 export default class Router {
@@ -11,8 +11,6 @@ export default class Router {
     }
 
     createRouter(defaultPage) {
-        const CookieConsumer = new Cookie()
-
         const { roots, getPathName } = this
         let defaultCount = 0
 
@@ -24,7 +22,7 @@ export default class Router {
             if (path === pathName) {
                 const { state, actions } = cooxConsumer
 
-                CookieConsumer.render(
+                pageRender(
                     document.getElementById("seed"),
                     page({state, actions})
                 )
@@ -36,7 +34,7 @@ export default class Router {
         }
 
         if (defaultCount >= roots.length) {
-            CookieConsumer.render(
+            pageRender(
                 document.getElementById("seed"),
                 defaultPage()
             )
