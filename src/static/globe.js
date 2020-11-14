@@ -1,1 +1,1 @@
-var componentFunctions = {}
+var $ = {}

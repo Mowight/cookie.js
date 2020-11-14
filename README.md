@@ -269,7 +269,7 @@ Bileşenlerin kendi içerisinde bir fonksiyon oluşturmak ve bunu bir butona ata
 Bu sorunu çözebilmek için tüm dosyalardan ulaşılabilecek global fonksiyon listesi vardır tabikide tüm fonksiyonları elinizle bu listeye girmeyeceksiniz.  
 bir component e özel fonksiyonu sadece o component dosyasında addComponentFunction ile oluşturmanız yeterli  
 addComponentFunction bir fonksiyondur içerisine tek bir obje parametresi alır bu obje içerisinde component de kullanacağınız fonksiyonlar bulunur.  
-Ve fonksiyonları kullanabilmek için ``` componentFunctions.functionName() ``` diyerek ulaşılması gerekir.  
+Ve fonksiyonları kullanabilmek için ``` $.functionName() ``` diyerek ulaşılması gerekir.  
 Bir button componenti oluşturalım
 
 ```javascript
@@ -292,8 +292,8 @@ export const NameAlertButton = (props) => {
     })
 
     return (`
-        ${/* componentFunctions.nameAlert() şeklinde kullanılır. */}
-        <button onclick="componentFunctions.nameAlert('${props.name}')">
+        ${/* $.nameAlert() şeklinde kullanılır. */}
+        <button onclick="$.nameAlert('${props.name}')">
             ${props.text}
         </button>
     `)
@@ -509,34 +509,3 @@ remove(".template")
 
 
 Tüm dökümantasyanu okuduysanız [Tutorial](https://github.com/polat-poyraz/cookie.js/tree/master/tutorial) inceleyebilirsiniz.
-
-<br>
-
-## RealCook
-Oluşturduğunuz bir değişken birden fazla yerde kullanılıyor ve sürekli değişiyor ise UI tarafında o değişkenin kullanıldığı kısımları günceller. içerisine aldığı ilk değer değişkenein default değeri olur. İkinci değer değişkenin güncelleme yapacağı etiketlerin id, tag veya class name i dir.  
-RealCook ile oluşturduğunuz değişkeni değiştirmek için ``` degisken.set(newValue) ``` demeniz gerekir.  
-Aşağıda counter componentinde addComponentFunction ile eklenen bir fonksiyonda count sürekli arttırılıyor.
-
-```javascript
-import RealCook from '../static/real-cook.js'
-import { addComponentFunctions } from '../static/add-component-functionsks'
-
-export const Count = () => {
-    // yeni bir değişken RealCook ile oluşturuldu
-    const count = new RealCook(0, "#counter")
-
-    addComponentFunctions({
-        addCount: () => {
-            count.set(count + 1)
-        }
-    })
-
-    // değişkenin değerini alabilmek için count.value diyoruz.
-    return (`
-        <h1 id="counter"> ${count.value} </h1>
-
-        <button onclick="componentFunctions.addCount()"> add </button>
-    `)
-}
-
-```
