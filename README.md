@@ -1,5 +1,5 @@
 # Cookie.js
-## 1.3.5
+## 1.4.5
 
 > Bu README dosyası dökümantasyon niteliğinde yazılmıştır.
 
@@ -16,6 +16,7 @@
 10. [Coox](#coox)
 11. [Config](#config)
 12. [Tools](#tools)
+13. [Real Cook](#realcook)
 
 <br>
 <br>
@@ -508,3 +509,34 @@ remove(".template")
 
 
 Tüm dökümantasyanu okuduysanız [Tutorial](https://github.com/polat-poyraz/cookie.js/tree/master/tutorial) inceleyebilirsiniz.
+
+<br>
+
+## RealCook
+Oluşturduğunuz bir değişken birden fazla yerde kullanılıyor ve sürekli değişiyor ise UI tarafında o değişkenin kullanıldığı kısımları günceller. içerisine aldığı ilk değer değişkenein default değeri olur. İkinci değer değişkenin güncelleme yapacağı etiketlerin id, tag veya class name i dir.  
+RealCook ile oluşturduğunuz değişkeni değiştirmek için ``` degisken.set(newValue) ``` demeniz gerekir.  
+Aşağıda counter componentinde addComponentFunction ile eklenen bir fonksiyonda count sürekli arttırılıyor.
+
+```javascript
+import RealCook from '../static/real-cook.js'
+import { addComponentFunctions } from '../static/add-component-functionsks'
+
+export const Count = () => {
+    // yeni bir değişken RealCook ile oluşturuldu
+    const count = new RealCook(0, "#counter")
+
+    addComponentFunctions({
+        addCount: () => {
+            count.set(count + 1)
+        }
+    })
+
+    // değişkenin değerini alabilmek için count.value diyoruz.
+    return (`
+        <h1 id="counter"> ${count.value} </h1>
+
+        <button onclick="componentFunctions.addCount()"> add </button>
+    `)
+}
+
+```
