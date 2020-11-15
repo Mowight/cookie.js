@@ -23,6 +23,14 @@ export const typesConsumer = () => {
     return types
 }
 
+const STRİNG = "string"
+const NUMBER = "number"
+const OBJECT = "object"
+const FUNCTION = "function"
+const SYMBOL = "symbol"
+
+export {STRİNG, NUMBER, OBJECT, FUNCTION, SYMBOL}
+
 export const propTypesControl = (props) => {
     const controls = (controls) => {
         for (const prop in controls) {
@@ -42,7 +50,7 @@ export const propTypesControl = (props) => {
                         }
 
                         if (defaultCount === extraTypes.length) {
-                            console.warn(`desired type "${reqType}", but incoming type "${getType}" \n none of these types: ${extraTypes.join(", ")} \n Additional types you have entered may be misspelled.`)
+                            console.warn(`desired type "${reqType}", but incoming type "${getType}" \n none of these types: ${extraTypes.join(", ")}.`)
                         }
                     }
                 }

@@ -1,4 +1,4 @@
-import { propTypesControl, typesConsumer } from '../static/prop-type-control.js'
+import { propTypesControl, typesConsumer, STRİNG, NUMBER } from '../static/prop-type-control.js'
 import { addComponentFunctions } from '../static/add-component-functions.js'
 
 export const NavLink = (props) => {
@@ -11,7 +11,7 @@ export const NavLink = (props) => {
     })
 
     propTypesControl(props).controls({
-        path: types.String(false, "/", ["string", "number"]),
+        path: types.String(false, "/", [STRİNG, NUMBER]),
         text: types.String(true)
     })
 

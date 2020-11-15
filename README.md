@@ -22,7 +22,6 @@
 10. [Coox](#coox)
 11. [Config](#config)
 12. [Tools](#tools)
-13. [Real Cook](#realcook)
 
 <br>
 <br>
@@ -199,7 +198,7 @@ parametreler mutlaka tek bir obje halinde gönderilmelidir.
 
 ```javascript
 // propTypesControl ve typesConsumer import edildi
-import { propTypesControl, typesConsumer } from '../static/prop-type-control.js'
+import { propTypesControl, typesConsumer, STRİNG, NUMBER } from '../static/prop-type-control.js'
 
 export const NavLink = (props) => {
     /*
@@ -233,9 +232,13 @@ export const NavLink = (props) => {
     */
     propTypesControl(props).controls({
         path: types.String(true, "/"),
-        text: types.String(false, "", ["number, boolean"])
+        text: types.String(false, "", [STRİNG, NUMBER])
         /*
-        girilen diğer array parametresi ise gelen prop un başka hangi değerlere sahip olabileceğini belirtir.
+            girilen diğer array parametresi ise gelen prop un başka hangi değerlere sahip olabileceğini belirtir.
+            Ve diğer type ları yazarken yazım yanlışı olmaması için
+            prop-type-control.js den key olarak alınır.
+            import { propTypesControl, typesConsumer, STRİNG, NUMBER } from '../static/prop-type-control.js'
+                                                        |       |
         */
     })
 
@@ -320,7 +323,7 @@ import Coox from '../../managment/coox-manager.js'
 const cooxConsumer = new Coox({
     first: ({state, actions}) => {}, // ilk çalışacak işlemler
     state: {}, // durumlar
-    methods: {}, // değişimler
+    mutation: {}, // değişimler
     actions: {} // aksiyonlar
 })
 
@@ -355,7 +358,7 @@ const cooxConsumer = new Coox({
     state: {
         names: []
     },
-    methods: {
+    mutation: {
         namePush(state, newName) {
             state.names.push(newName)
         }
@@ -384,7 +387,7 @@ const cooxConsumer = new Coox({
     state: {
         names: ["Polat"]
     },
-    methods: {
+    mutation: {
         namePush(state, newName) {
             state.names.push(newName)
         },
@@ -411,6 +414,11 @@ cooxConsumer.createCoox()
 
 export default cooxConsumer
 ```
+
+## Mutation History
+Her action bir veya birden fazla mutation use ettiği için hangi mutation a hangi veriler gönderildi bunları kontrol etmek bağzen zorlaşır. Tam bu esnada history devreye girer.
+History son çalışan mutation ı ve ona gönderilen parametreyi içerisinde saklar.
+History görüntülemek için coox içerisinde ``` cooxConsumer.getHistory() ``` diyere son geçmişi çekebilirsiniz.
 
 <br>
 
