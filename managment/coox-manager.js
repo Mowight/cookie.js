@@ -2,7 +2,7 @@ export default class Coox {
     constructor(props) {
         this.first = props.first
         this.state = props.state
-        this.mutation = props.mutation
+        this.mutations = props.mutations
         this.actions = props.actions
         this.history = {
             mode: false,
@@ -15,7 +15,7 @@ export default class Coox {
     }
 
     historyUse(mutationName, data) {
-        this.mutation[mutationName](this.state, data)
+        this.mutations[mutationName](this.state, data)
         let newData = {}
 
         if (this.history.mode) {
@@ -34,11 +34,11 @@ export default class Coox {
     }
 
     use(mutationName, data) {
-        if (this.mutation[mutationName] !== undefined) {
+        if (this.mutations[mutationName] !== undefined) {
             this.history.mode ? //if
                 this.historyUse(mutationName, data) 
             : // else
-            this.mutation[mutationName](this.state, data)
+            this.mutations[mutationName](this.state, data)
         } else {
             console.error(`${mutationName} is not a mutation`)
         }
@@ -49,9 +49,9 @@ export default class Coox {
             const argument = useList[prop]
             const mutationName = prop
 
-            if (this.mutation[mutationName] !== undefined) {
+            if (this.mutationsmutation[mutationName] !== undefined) {
                 this.historyUse()
-                this.mutation[mutationName](this.state, argument)
+                this.mutations[mutationName](this.state, argument)
             } else {
                 console.error(`Could not find a mutationName named ${prop}`)
             }
@@ -70,7 +70,7 @@ export default class Coox {
             console.error("state not found in coox")
         }
 
-        if (this.mutation === undefined) {
+        if (this.mutations === undefined) {
             console.error("mutation not found in coox")
         }
 

@@ -3,7 +3,7 @@ import Coox from '../../managment/coox-manager.js'
 const cooxConsumer = new Coox({
     first: ({state, actions}) => {},
     state: {},
-    mutation: {},
+    mutations: {},
     actions: {}
 })
 
