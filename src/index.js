@@ -1,6 +1,6 @@
 import { Home } from './pages/Home.js'
 import { About } from './pages/About.js'
-import Cookie from '../managment/cookie.js'
+import App from '../managment/cookie.js'
 
 const cookieRoots = [
     {
@@ -13,4 +13,4 @@ const cookieRoots = [
     }
 ]
 
-Cookie.createRouter(cookieRoots)
+App.createRouter(cookieRoots)

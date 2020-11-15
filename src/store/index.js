@@ -1,12 +1,12 @@
 import Coox from '../../managment/coox-manager.js'
 
-const cooxConsumer = new Coox({
+const store = new Coox({
     first: ({state, actions}) => {},
     state: {},
     mutations: {},
     actions: {}
 })
 
-cooxConsumer.createCoox()
+store.createCoox()
 
-export default cooxConsumer
+export default store

@@ -3,7 +3,7 @@ import Router from './router-manager.js'
 import Config from './config-manager.js'
 import { Template } from '../src/Template.js'
 
-class CookieCenter {
+class Cookie {
     constructor() {
         this.$ = {}
     }
@@ -35,6 +35,6 @@ class CookieCenter {
     }
 }
 
-const Cookie = new CookieCenter()
+const App = new Cookie()
 
-export default Cookie
+export default App
