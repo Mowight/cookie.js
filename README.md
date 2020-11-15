@@ -1,6 +1,12 @@
 # Cookie.js
 ## 1.4.5
 
+<br>
+
+![](https://image.flaticon.com/icons/png/128/164/164659.png)
+
+<br>
+
 > Bu README dosyası dökümantasyon niteliğinde yazılmıştır.
 
 ## İçerik
