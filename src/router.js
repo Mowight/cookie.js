@@ -1,7 +1,6 @@
-import Router from '../managment/router-manager.js'
 import { Home } from './pages/Home.js'
 import { About } from './pages/About.js'
-import { DefaultRequire } from './static/default-require.js'
+import Cookie from '../managment/cookie.js'
 
 const cookieRoots = [
     {
@@ -14,4 +13,4 @@ const cookieRoots = [
     }
 ]
 
-const router = new Router(cookieRoots).createRouter(DefaultRequire)
+Cookie.createRouter(cookieRoots)

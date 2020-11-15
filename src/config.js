@@ -1,4 +1,4 @@
-import Config from '../managment/config-manager.js'
+import Cookie from '../managment/cookie.js'
 
 const settings = {
     title: "Example Cookie.js App",
@@ -10,4 +10,4 @@ const settings = {
     ]
 }
 
-new Config(settings).configManager()
+Cookie.config(settings)

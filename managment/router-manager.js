@@ -1,5 +1,5 @@
-import { pageRender } from './page-render.js'
 import cooxConsumer from '../src/store/index.js'
+import Cookie from './cookie.js'
 
 export default class Router {
     constructor(roots) {
@@ -22,7 +22,7 @@ export default class Router {
             if (path === pathName) {
                 const { state, actions } = cooxConsumer
 
-                pageRender(
+                Cookie.pageRender(
                     document.getElementById("seed"),
                     page({state, actions})
                 )
@@ -34,7 +34,7 @@ export default class Router {
         }
 
         if (defaultCount >= roots.length) {
-            pageRender(
+            Cookie.pageRender(
                 document.getElementById("seed"),
                 defaultPage()
             )
