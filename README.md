@@ -22,6 +22,7 @@
 10. [Coox](#coox)
 11. [Config](#config)
 12. [Tools](#tools)
+13. [Reals](#reals)
 
 <br>
 <br>
@@ -524,5 +525,48 @@ o elemanı silebilirsiniz.
 remove(".template")
 ```
 
+## Reals
+Reals bir değişken değiştiğinde onun kullanıldığı yerleri güncelleyemeye ve onu kullanan fonksiyonları değişim olduğunda tekrar çalıştırmaya yarar.  
+static dosyasından kullanacağınız real ı import ediniz
+
+### RealHtml
+bir değişkenin içerik olarak değişimini sağlar.  
+
+```javascript
+import { addComponentFunctions } from '../static/add-component-functions.js'
+import { setHtml } from '../static/tools.js'
+import RealHtml from '../static/real.js'
+
+export const Count = (id) => {
+    const count = new RealHtml(0, "#counter")
+
+    count.use((value, id) => {
+        setHtml("#test", value)
+    })
+
+    addComponentFunctions({
+        addCount: (id) => {
+            count.set(count.value + 1)
+        }
+    })
+
+    return (`
+        <div style="margin-top: 1em;">
+
+            count: <span id="counter"> ${count.value} </span>
+
+            <span id="test"> 0 </span>
+
+            <button onclick="$.addCount()">
+                add count
+            </button>
+        </div>
+    `)
+}
+```
+
+RealHtml bir etiketin html içeriğini düzenler.
+
+<br>
 
 Tüm dökümantasyanu okuduysanız [Tutorial](https://github.com/polat-poyraz/cookie.js/tree/master/tutorial) inceleyebilirsiniz.
