@@ -44,20 +44,6 @@ export default class Coox {
         }
     }
 
-    uses(useList) {
-        for (const prop in useList) {
-            const argument = useList[prop]
-            const mutationName = prop
-
-            if (this.mutationsmutation[mutationName] !== undefined) {
-                this.historyUse()
-                this.mutations[mutationName](this.state, argument)
-            } else {
-                console.error(`Could not find a mutationName named ${prop}`)
-            }
-        }
-    }
-
     createCoox() {
         if (this.first !== undefined) {
             this.first({
