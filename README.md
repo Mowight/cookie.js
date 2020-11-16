@@ -76,20 +76,18 @@ bu sayede javascript kodunu string içerisine gömebiliriz.
 export const Home = (coox) => {
     const title = "Cookie.js"
 
-    // coox parametresine sonra deyinilecek
-    return { // bir obje return ediliyor
-        // html değeri
-        // bu değer bastırılacak html kodlarını barındırır
-        html: (`
-            <h1> ${title} </h1>
-            <p> Hello World </p>
-        `),
-        // html kodları bastırıldıktan sonra 
-        // çalışacak işlemleri barındırır
-        afterLoad() {
-            console.log("Home page...")
-        }
+    // html kodları
+    const html = (`
+        <h1> ${title} </h1>
+        <p> Hello World </p>
+    `)
+
+    const afterLoad = () => {
+        // html kodları bastırıldıktan sonra çalışacak işlemler
+        console.log("Home page...")
     }
+
+    return {html, afterLoad} // html mutalak return edilmeli
 }
 ```
 
@@ -105,6 +103,7 @@ import Router from '../managment/router-manager.js'
 // isteklere göre yazdırılacak sayfalar
 import { Home } from './pages/Home.js' // Home
 import { About } from './pages/About.js' // About
+import App from '../managment/cookie.js' // uygulamanız
 
 /*
 eğer kullanıcının isteği hiçbir istek ile
@@ -124,7 +123,7 @@ const cookieRoots = [ // her root birer objedir
 ]
 
 // yeni bir router oluşturuluyor
-new Router(cookieRoots).createRouter(DefaultRequire)
+App.createRouter(cookieRoots, DefaultRequire)
 ```
 
 <br>
@@ -134,10 +133,10 @@ Template sayfanızı kapsayan bir fonksiyondur.
 Tüm sayfalarınız, componentleriniz ve içerikleriniz Template içerisine gelen html parametresinde bulunur.   
 
 ```javascript
-export const Template = (html) => {
+export const Template = (view) => {
     return (`
         <div class="template">
-            ${html}
+            ${view}
         </div>
     `)
 }
@@ -172,16 +171,17 @@ import { Header } from '../components/header.js'
 export const Home = (coox) => {
     const title = "Cookie.js"
 
-    return {
-        html: (`
-            ${Header()}
-            <h1> ${title} </h1>
-            <p> Hello World </p>
-        `),
-        afterLoad() {
-            console.log("Home page...")
-        }
+    const html = (`
+        ${Header()}
+        <h1> ${title} </h1>
+        <p> Hello World </p>
+    `)
+
+    const afterLoad = () => {
+        console.log("Home page...")
     }
+
+    return {html, afterLoad}
 }
 ```
 
@@ -261,17 +261,18 @@ import { NavLink } from '../components/NavLink.js'
 export const Home = (coox) => {
     const title = "Cookie.js"
 
-    return {
-        html: (`
-            ${Header()}
-            <h1> ${title} </h1>
-            <p> Hello World </p>
-            ${NavLink({path: "/home", text: "Ana sayfaya gitmek için tıklayınız"})}
-        `),
-        afterLoad() {
-            console.log("Home page...")
-        }
+    const html = (`
+        ${Header()}
+        <h1> ${title} </h1>
+        <p> Hello World </p>
+        ${NavLink({path: "/home", text: "Ana sayfaya gitmek için tıklayınız"})}
+    `)
+
+    const afterLoad = () => {
+        console.log("Home page...")
     }
+
+    return {html, afterLoad}
 }
 ```
 
@@ -321,7 +322,7 @@ Coox uygulamanızda birden fazla yerde kullancağınız aynı değişkenleri, me
 ```javascript
 import Coox from '../../managment/coox-manager.js'
 
-const cooxConsumer = new Coox({
+const store = new Coox({
     first: ({state, actions}) => {}, // ilk çalışacak işlemler
     state: {}, // durumlar
     mutation: {}, // değişimler
@@ -329,12 +330,17 @@ const cooxConsumer = new Coox({
 })
 
 // coox işlemleri başlatılıyor
-cooxConsumer.createCoox()
+store.createCoox()
 
-export default cooxConsumer
+export default store
 ```
 
-Coox dan bir veri çekmek için coox u import etmenize gerek yoktur. Coox içerisindeki state ve actions verileri tüm sayfalara gönderilir.
+Coox dan bir veri çekmek için coox u import etmenize gerek yoktur. Coox içerisindeki state ve actions verileri tüm sayfalara gönderilir.  
+Ancak bir component'den direkt olarak store a ulaşmak isterseniz
+```javascript
+import store from '../store/index.js'
+```
+diyerek ulaşabilirsiniz.
 
 ```javascript
 export const Home = (coox/* state ve actions otomatik gelir. */) => {
@@ -347,14 +353,14 @@ export const Home = (coox/* state ve actions otomatik gelir. */) => {
 ```
 
 ### use
-coox da actionlar bir method çalıştırmak istediğinde bunu cooxConsumer dan gelen ``` use ``` ile yapılması gerekir. use ile yapılasının sebebi ise çalıştırdığınız method a state i otamatik göndermeye yarar.
-Bir action bir methodu u use ile çalıştırmalıdır.
-use ilk parametresi çalışacak method un tam adını alır, ikinci parametre ise çalışacak method a gönderilecek değerlerdir.
+coox da actionlar bir mutation çalıştırmak istediğinde bunu store dan gelen ``` use ``` ile yapılması gerekir. use ile yapılasının sebebi ise çalıştırdığınız mutation a state i otamatik göndermeye yarar.
+Bir action bir mutation u use ile çalıştırmalıdır.
+use ilk parametresi çalışacak mutation un tam adını alır, ikinci parametre ise çalışacak mutation a gönderilecek değerlerdir.
 
 ```javascript
 import Coox from '../../managment/coox-manager.js'
 
-const cooxConsumer = new Coox({
+const store = new Coox({
     first: ({state, actions}) => {},
     state: {
         names: []
@@ -366,60 +372,20 @@ const cooxConsumer = new Coox({
     },
     actions: {
         ADD_NAME(newName) {
-            cooxConsumer.use("namePush", newName)
+            store.use("namePush", newName)
         }
     }
 })
 
-cooxConsumer.createCoox()
+store.createCoox()
 
-export default cooxConsumer
+export default store
 ```
 
-### uses
-Eğer tek seferde birden fazla method çalıştırmak istiyorsanız bunu uses ile yapabilirsiniz.
-uses içerisine bir obje alır. Objedeki her obje adı method ismine karşılık gelir ve değeri ise o method a argüman olarak gönderilir.
-
-```javascript
-import Coox from '../../managment/coox-manager.js'
-
-const cooxConsumer = new Coox({
-    first: ({state, actions}) => {},
-    state: {
-        names: ["Polat"]
-    },
-    mutation: {
-        namePush(state, newName) {
-            state.names.push(newName)
-        },
-        removeName(state, name) {
-            const index = state.names.indexOf(name)
-            state.names.splice(index, 1)
-        },
-        controls(state) {
-            console.log(state.names)
-        }
-    },
-    actions: {
-        NAME_CONTROL(newName) {
-            cooxConsumer.uses({
-                namePush: newName,
-                removeName: "Polat",
-                controls: ""
-            })
-        }
-    }
-})
-
-cooxConsumer.createCoox()
-
-export default cooxConsumer
-```
-
-## Mutation History
+### Mutation History
 Her action bir veya birden fazla mutation use ettiği için hangi mutation a hangi veriler gönderildi bunları kontrol etmek bağzen zorlaşır. Tam bu esnada history devreye girer.
 History son çalışan mutation ı ve ona gönderilen parametreyi içerisinde saklar.
-History görüntülemek için coox içerisinde ``` cooxConsumer.getHistory() ``` diyere son geçmişi çekebilirsiniz.
+History görüntülemek için store içerisinde ``` store.getHistory() ``` diyerek son geçmişi çekebilirsiniz.
 
 <br>
 
@@ -427,20 +393,21 @@ History görüntülemek için coox içerisinde ``` cooxConsumer.getHistory() ```
 config.js de html dosyanıza eklenecek bir takım dosyaları barındırır ve head kısmı ile ilgilenir.
 
 ```javascript
-import Config from '../managment/config-manager.js'
+import App from '../managment/cookie.js' // uygulamanız
 
 const settings = {
     title: "Example Cookie.js App", // sayfa başlığı
-    styles: [ // styles klasöründen eklenecek CSS dosyaları
-        { rel: "stylesheet", fileName: "index.css" }
+    styles: [
+        { rel: "stylesheet", fileName: "index.css" } // styles kalsöründen eklenecek css dosyaları
     ],
-    links: [ // CDN ile eklenecek css dosyaları
+    links: [
+        // link
         { rel: "stylesheet", href: "https://fonts.googleapis.com/icon?family=Material+Icons" }
     ]
 }
 
-// yeni ayarların oluşturulması
-new Config(settings).configManager()
+// uygulama ayarlarının başlatılması.
+App.config(settings)
 ```
 
 <br>
