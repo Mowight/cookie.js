@@ -1,23 +1,11 @@
 export const typesConsumer = () => {
     const types = {
-        String: (req, defaultValue, extraTypes) => {
-            return {type: "string", isRequire: req, default: defaultValue, extraTypes}
-        },
-        Bool: (req, defaultValue, extraTypes) => {
-            return {type: "boolean", isRequire: req, default: defaultValue, extraTypes}
-        },
-        Number: (req, defaultValue, extraTypes) => {
-            return {type: "number", isRequire: req, default: defaultValue, extraTypes}
-        },
-        Object: (req, defaultValue, extraTypes) => {
-            return {type: "object", isRequire: req, default: defaultValue, extraTypes}
-        },
-        Function: (req, defaultValue, extraTypes) => {
-            return {type: "function", isRequire: req, default: defaultValue, extraTypes}
-        },
-        Symbol: (req, defaultValue, extraTypes) => {
-            return {type: "symbol", isRequire: req, default: defaultValue, extraTypes}
-        }
+        String: (req, types) => ({type: "string", isRequire: req, types}),
+        Bool: (req, types) => ({type: "boolean", isRequire: req, types}),
+        Number: (req, types) => ({type: "number", isRequire: req, types}),
+        Object: (req, types) => ({type: "object", isRequire: req, types}),
+        Function: (req, types) => ({type: "function", isRequire: req, types}),
+        Symbol: (req, types) => ({type: "symbol", isRequire: req, types})
     }
 
     return types
@@ -27,40 +15,44 @@ const STRİNG = "string"
 const NUMBER = "number"
 const OBJECT = "object"
 const FUNCTION = "function"
+const BOOLEAN = "boolean"
 const SYMBOL = "symbol"
 
-export {STRİNG, NUMBER, OBJECT, FUNCTION, SYMBOL}
+export {STRİNG, NUMBER, OBJECT, FUNCTION, SYMBOL, BOOLEAN}
+
 
 export const propTypesControl = (props) => {
-    const controls = (controls) => {
-        for (const prop in controls) {
-            if (props[prop] !== undefined) {
-                const getType = typeof props[prop]
-                const reqType = controls[prop].type
-                const extraTypes = controls[prop].extraTypes
+    const controls = (controller) => {
+        for (const prop in controller) {
+            const reqType = controller[prop].type
+            const isType = typeof props[prop]
+            const isRequire = controller[prop].isRequire
+            const extraTypes = controller[prop].types
+            let extraTypesCount = 0
 
-                if (getType !== reqType) {
-                    if (extraTypes !== undefined) {
-                        let defaultCount = 0
-
-                        for (let i in extraTypes) {
-                            if (getType !== extraTypes[i]) {
-                                defaultCount++
+            if (props[prop] === undefined && isRequire) {
+                console.error(`It should come with the name ${prop}, prop did not come`)
+            } else {
+                if (props[prop] !== undefined){
+                    if (isType !== reqType) {
+                        if (extraTypes !== undefined) {
+                            for (let i in extraTypes) {
+                                const extraTypesItem = extraTypes[i]
+                                
+                                if (extraTypesItem !== isType) {
+                                    extraTypesCount++
+                                } else {
+                                    break;
+                                }
                             }
-                        }
 
-                        if (defaultCount === extraTypes.length) {
-                            console.warn(`desired type "${reqType}", but incoming type "${getType}" \n none of these types: ${extraTypes.join(", ")}.`)
+                            extraTypesCount === extraTypes.length ?
+                                console.warn(`The ${prop} prop named did not come with the requested type\ndesired type: ${reqType} incoming type: ${isType}`)
+                            : null
+                        } else {
+                            console.warn(`The ${prop} prop named did not come with the requested type\ndesired type: '${reqType}', incoming type: '${isType}'`)
                         }
                     }
-                }
-            } else {
-                if (controls[prop].isRequire) {
-                    console.error(`"${prop}" who was supposed to come did not come`)
-                }
-
-                if (controls[prop].default !== undefined) {
-                    props[prop] = controls[prop].default
                 }
             }
         }

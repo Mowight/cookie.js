@@ -190,11 +190,10 @@ Bileşen kullanımı oldukça basit ve sadedir, fakat işin içine fonksiyon kul
 <br>
 
 ## Prop Types
-PropTypes bileşenlere gelen parametrelerin gelmek zorunda olup olmadığını ve eğer gelirse değerinin hangi tipte olacağını belirler.  
-bir NavLink componenti oluşturlım ve birkaç değer alıp bu değerleri kontrol ettirelim.  
+PropTypes bileşenlere gelen parametrelerin gelmek zorunda olup olmadığını ve eğer gelirse değerinin hangi tiplerde olacağını belirler.  
+Bir NavLink componenti oluşturlım ve birkaç değer alıp bu değerleri kontrol ettirelim.  
 Önce bu bileşene birkaç parametre gönderelim.
-> propTypes controlu yapılacak componentlere gönderilen
-parametreler mutlaka tek bir obje halinde gönderilmelidir.
+> propTypes controlu yapılacak componentlere gönderilen parametreler mutlaka tek bir obje halinde gönderilmelidir.
 
 
 ```javascript
@@ -227,13 +226,10 @@ export const NavLink = (props) => {
         olmalı
         false verilirse: bu değer gelmesede olur eğer gelirse tipi string 
         olmalı.
-        types.String(true, "/") burada gördüğünüz ikinci
-        parametre ise default değeri belirtir.
-        Yani istenen prop gelmediğin de geçerli olacak değerdir.
     */
     propTypesControl(props).controls({
-        path: types.String(true, "/"),
-        text: types.String(false, "", [STRİNG, NUMBER])
+        path: types.String(true),
+        text: types.String(false, [STRİNG, NUMBER])
         /*
             girilen diğer array parametresi ise gelen prop un başka hangi değerlere sahip olabileceğini belirtir.
             Ve diğer type ları yazarken yazım yanlışı olmaması için
