@@ -1,4 +1,4 @@
-import Cookie from '../managment/cookie.js'
+import App from '../managment/cookie.js'
 
 const settings = {
     title: "Example Cookie.js App",
@@ -10,4 +10,4 @@ const settings = {
     ]
 }
 
-Cookie.config(settings)
+App.config(settings)
