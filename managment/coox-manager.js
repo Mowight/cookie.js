@@ -44,6 +44,30 @@ export default class Coox {
         }
     }
 
+    async test(mutationName, data, isSpeed, after) {
+        isSpeed === undefined ? console.error("You have to enter a speed limit for the test.") : null
+        const green = "#CCFCD4"
+        const red = "#FC9C9C"
+        let count = 0
+        const counter = setInterval(() => count++, 0)
+        if (this.mutations[mutationName] !== undefined) {
+            await this.mutations[mutationName](this.state, data)
+        } else {
+            console.error(`A mutation named '${mutationName}' was not found.`)
+        }
+        clearInterval(counter)
+        const title = "Coox Store Test Results"
+        const name = `mutation name: ${mutationName}`
+        const reqSpeed = `required speed: ${isSpeed}ms`
+        const speed = `speed: ${count}ms`
+        const testMode = `test mode: ${count > isSpeed ? "test failed" : "test successful"}`
+        const table = `${name}\n${reqSpeed}\n${speed}\n${testMode}`
+        const line = "----------------------------------------"
+        const result = await [`%c ${title}\n${line}\n${table}\n${line}\n`, `background: ${count > isSpeed ? red : green}; color: 
+    black`]
+        after(result)
+    }
+
     createCoox() {
         if (this.first !== undefined) {
             this.first({

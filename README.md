@@ -383,6 +383,33 @@ Her action bir veya birden fazla mutation use ettiği için hangi mutation a han
 History son çalışan mutation ı ve ona gönderilen parametreyi içerisinde saklar.
 History görüntülemek için store içerisinde ``` store.getHistory() ``` diyerek son geçmişi çekebilirsiniz.
 
+### Test
+Bağzı mutation lar uzun işlemler yapıyor olabilir (filtreleme, data dan veri çekme) bu tarz mutasyonların ne kadar sürede çalıştığını öğrenmek için store dan gelen test methodunu kullnıyoruz. Test metodunun aldığı parametreler şunlardır
+``` mutation name ```, ``` mutation arguments ```, ``` required time ```, ``` processes to run after ``` 
+ ilk önce test yapılacak mutation ın ismi girilir. sonrasında o mutation ın kullanacağı argümanlar gönderilir , ardından bu mutation ın çalışma süresinin en fazla ne kadar olabileceği söylenir (mili saniye cinsinden girilir.) ve bunun ardından tüm test işlemleri bittiğinde çalışacak bir fonksiyon gönderilir. Bu gönderilen fonksiyon bir result parametresi alır, bu parametrede test sonuçları bulunur.
+
+> !! test ettiğiniz mutation mutlaka return işlemi yapmalıdır.
+
+```javascript
+state: {
+    content: []
+},
+mutations: {
+    getData: (state, block) => {
+        state.content.push(block)
+        return fetch("https://jsonplaceholder.typicode.com/posts")
+    }
+},
+actions: {
+    SAMPLE_ACTİON: (block) => {
+        store.test('getData', block, 100, (result) => {
+            console.log(...result) // test sonuçları result parametresi ile çekilir.
+            // sonuçları düzgün görüntülemek için ...result diyiniz.
+        })
+    }
+}
+```
+
 <br>
 
 ## Config
