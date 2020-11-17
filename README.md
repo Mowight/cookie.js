@@ -1,13 +1,86 @@
-# Cookie.js
-## 1.4.5
+<style>
+.markdown-warn-text-block-client,
+.markdown-info-text-block-client {
+    margin-bottom: 1em;
+    padding: 0.6em;
+    width: max-content;
+    border-radius: 5px;
+    max-width: 100%;
+    word-wrap: break-word;
+    font-weight: 600;
+}
 
+.markdown-info-text-block-client {
+    background: #CCECF4;
+    border-left: 6px solid #04B4DC;
+}
+
+.markdown-warn-text-block-client {
+    background: #FCFBBC;
+    border-left: 6px solid #FCF47C;
+}
+.markdown-info-block-client {
+    display: inline-flex;
+    width: max-content;
+    border-radius: 6px;
+    overflow: hidden;
+    height: max-content;
+    padding: 0;
+    margin-left: 1em;
+}
+
+.markdown-info-block-client > div {
+    height: 100%;
+    padding: 0.3em;
+}
+
+.markdown-info-block-client .left {
+    background: #1C1C24;
+    color: white;
+}
+
+.markdown-info-block-client .right {
+    background: #54CC7C;
+    font-weight: 600;
+}
+.string {
+    color: #F58787 !important;
+}
+.keyword {
+    color: #7C24DC !important;
+}
+</style>
+
+# Cookie.js
+
+<div class="markdown-info-block-client">
+    <div class="left">
+        version
+    </div>
+    <div class="right">
+        1.4.7
+    </div>
+</div>
+
+<div class="markdown-info-block-client">
+    <div class="left">
+        author
+    </div>
+    <div class="right">
+        Polat Poyraz
+    </div>
+</div>
+
+<br>
 <br>
 
 ![](https://image.flaticon.com/icons/png/128/164/164659.png)
 
 <br>
 
-> Bu README dosyası dökümantasyon niteliğinde yazılmıştır.
+<div class="markdown-info-text-block-client">
+Bu README dosyası dökümantasyon niteliğinde yazılmıştır.
+</div>
 
 ## İçerik
 1. [Nedir?](#nedir)  
@@ -30,6 +103,9 @@
 ## Nedir
 Cookie.js web sayfalarınızın ön yüzünü dinamik halde, vanilya javascript kullanarak yazmanızı sağlayan bir kütüphanedir.  
 Cookie.js kullanarak daha kontrollü şekilde web sitelerinizi inşa edin.
+<div class="markdown-info-text-block-client">
+Cookie.js kullanmadan önce temel javascript bilginizin iyi olduğundan emin olun.
+</div>
 
 <br>
 
@@ -45,12 +121,12 @@ Cookie.js kullanarak daha kontrollü şekilde web sitelerinizi inşa edin.
     |--store  
     |--Template.js  
     |--config.js  
-    |--router.js
+    |--index.js
 ```
 Cookie.js kullanırken tüm etkileşim src klasörü içerisinde yapılır.  
 assets içerisine resimler, component içerisine bileşenler ve pages içerisine sayfalar koyulur. static klasöründe ise cookie.js kullanırken ihtiyacınız olacak parçalar koyulmuştur.  
 config.js sayfanızın head kısmı içerisini düzenler.  
-router.js ise hangi isteğe karşılık hangi sayfa bastırılacak onu belirler.
+index.js ise hangi isteğe karşılık hangi sayfa bastırılacak onu belirler.
 store kalsöründe ise [coox](#coox) bulunur
 
 <br>
@@ -59,6 +135,10 @@ store kalsöründe ise [coox](#coox) bulunur
 Cookie.js npm e yüklenmemiştir. GitHub üzerinden örnek bir cookie.js dosyası indirerek başlayın.  
 Ardından terminal aracılığı ile cookie.js projenize girip
 ``` npm install ``` yapın, bu sayede gerekli paketler indirilmiş olacaktır. Ardından ``` npm start ``` yaparak cookie.js projeniz ``` localhost:1000 ``` adresinde çalışmaya başlayacaktır.
+
+<div class="markdown-warn-text-block-client">
+Aynı anda birden fazla cookie projesini npm de çalıştırmak hataya yol açabilir.
+</div>
 
 <br>
 
@@ -97,13 +177,12 @@ export const Home = (coox) => {
 Router isteklere verilecek cevapları ve kullanıcının isteği router da bulunmuyorsa default olarak hangi sayfanın bastırılacağını belirtir.
 
 ```javascript
-// router import ediliyor
-import Router from '../managment/router-manager.js'
-
 // isteklere göre yazdırılacak sayfalar
 import { Home } from './pages/Home.js' // Home
 import { About } from './pages/About.js' // About
-import App from '../managment/cookie.js' // uygulamanız
+
+// Uygulama
+import App from '../managment/cookie.js'
 
 /*
 eğer kullanıcının isteği hiçbir istek ile
@@ -130,7 +209,7 @@ App.createRouter(cookieRoots, DefaultRequire)
 
 ## Template
 Template sayfanızı kapsayan bir fonksiyondur.  
-Tüm sayfalarınız, componentleriniz ve içerikleriniz Template içerisine gelen html parametresinde bulunur.   
+Tüm sayfalarınız, componentleriniz ve içerikleriniz Template içerisine gelen view parametresinde bulunur.   
 
 ```javascript
 export const Template = (view) => {
@@ -191,10 +270,13 @@ Bileşen kullanımı oldukça basit ve sadedir, fakat işin içine fonksiyon kul
 
 ## Prop Types
 PropTypes bileşenlere gelen parametrelerin gelmek zorunda olup olmadığını ve eğer gelirse değerinin hangi tiplerde olacağını belirler.  
-Bir NavLink componenti oluşturlım ve birkaç değer alıp bu değerleri kontrol ettirelim.  
+Bir NavLink componenti oluşturalım ve birkaç değer alıp bu değerleri kontrol ettirelim.  
 Önce bu bileşene birkaç parametre gönderelim.
-> propTypes controlu yapılacak componentlere gönderilen parametreler mutlaka tek bir obje halinde gönderilmelidir.
 
+<div class="markdown-warn-text-block-client">
+propTypes a gönderilen props parametersi mutlaka obje olmalıdır. <br>
+Aynı zamanda controls fonksiyonuna da bir obje gönderilmelidir.
+</div>
 
 ```javascript
 // propTypesControl ve typesConsumer import edildi
@@ -213,25 +295,23 @@ export const NavLink = (props) => {
     /*
         propTypesControl fonksiyonu
         içerisine üzerinden control yapacağı objeyi alır.
-        gelen props mutalaka obje olmalıdır.
         propTypesControl controls adında
         bir fonksiyon return eder. Bu fonksiyonda kontroller
         bir obje halinde yapılır.
-        types.String() içerisine gelen değerin string türünde
+        örneğin types.String() içerisine gelen değerin string türünde
         olması gerektiğini belirtir.
         içerisine aldığı true, false parametreleri ise
         bu isimde bir değerin bu bileşene mutlaka
         gönderilmesi gerektiğini belirtir.
-        true varilirse: bu değer mutlaka gelmeli geldiğinde ise tipi string 
-        olmalı
-        false verilirse: bu değer gelmesede olur eğer gelirse tipi string 
-        olmalı.
+        true varilirse: bu değer mutlaka gelmeli
+        false verilirse: bu değer gelmesede olur
     */
     propTypesControl(props).controls({
         path: types.String(true),
         text: types.String(false, [STRİNG, NUMBER])
         /*
-            girilen diğer array parametresi ise gelen prop un başka hangi değerlere sahip olabileceğini belirtir.
+            girilen diğer array parametresi ise gelen prop tipinin
+            başka hangi tiplere sahip olabileceğini belirtir.
             Ve diğer type ları yazarken yazım yanlışı olmaması için
             prop-type-control.js den key olarak alınır.
             import { propTypesControl, typesConsumer, STRİNG, NUMBER } from '../static/prop-type-control.js'
@@ -282,6 +362,12 @@ addComponentFunction bir fonksiyondur içerisine tek bir obje parametresi alır 
 Ve fonksiyonları kullanabilmek için ``` $.functionName() ``` diyerek ulaşılması gerekir.  
 Bir button componenti oluşturalım
 
+<div class="markdown-info-text-block-client">
+Birden fazla kez tekrar eden bir bileşende addComponentFunction kullanıldığında <br>
+eklenecek fonksiyon birkez eklenir ve diğer seferlerde tekrar aynı fonksiyon eklenmez, 
+bu sayede aynı fonksiyonun sürekli eklenmeye çalışması önlenir.
+</div>
+
 ```javascript
 import { propTypesControl, typesConsumer } from '../static/prop-type-control.js'
 
@@ -313,7 +399,15 @@ export const NameAlertButton = (props) => {
 <br>
 
 ## Coox
-Coox uygulamanızda birden fazla yerde kullancağınız aynı değişkenleri, metodları ve action ları tutacağınız bri kısımdır.
+Coox global state managment dır yani uygulamadaki verilerere işlemlere heryerden ulaşmayı sağlar.
+Cookie.js de işlemlerin çoğu state üzerinden yapılır. store u bir depo olarak veya bir mağza olarak düşünün.
+
+<div class="markdown-info-text-block-client">
+Genel işlemlerinizi store üzerinde yapın. <br>
+Eğer state üzerinde bir değişiklik yapmak isterseniz bunu mutations dan bir
+mutation ile yapın. <br>
+Bir mutation çalıştırmak için ise actions içerisine bir action oluşturun ve store.use() ile mutation ı çalıştırın.
+</div>
 
 ```javascript
 import Coox from '../../managment/coox-manager.js'
@@ -331,7 +425,7 @@ store.createCoox()
 export default store
 ```
 
-Coox dan bir veri çekmek için coox u import etmenize gerek yoktur. Coox içerisindeki state ve actions verileri tüm sayfalara gönderilir.  
+Store dan bir veri çekmek için store u import etmenize gerek yoktur. Store içerisindeki state ve actions verileri tüm sayfalara gönderilir.  
 Ancak bir component'den direkt olarak store a ulaşmak isterseniz
 ```javascript
 import store from '../store/index.js'
@@ -349,8 +443,7 @@ export const Home = (coox/* state ve actions otomatik gelir. */) => {
 ```
 
 ### use
-coox da actionlar bir mutation çalıştırmak istediğinde bunu store dan gelen ``` use ``` ile yapılması gerekir. use ile yapılasının sebebi ise çalıştırdığınız mutation a state i otamatik göndermeye yarar.
-Bir action bir mutation u use ile çalıştırmalıdır.
+coox da actionlar bir mutation çalıştırmak istediğinde bunu store dan gelen ``` use ``` ile yapması gerekir. use ile yapılasının sebebi ise çalıştırdığınız mutation a state i otamatik göndermeye yarar.
 use ilk parametresi çalışacak mutation un tam adını alır, ikinci parametre ise çalışacak mutation a gönderilecek değerlerdir.
 
 ```javascript
@@ -368,7 +461,7 @@ const store = new Coox({
     },
     actions: {
         ADD_NAME(newName) {
-            store.use("namePush", newName)
+            store.use('namePush', newName)
         }
     }
 })
@@ -384,11 +477,14 @@ History son çalışan mutation ı ve ona gönderilen parametreyi içerisinde sa
 History görüntülemek için store içerisinde ``` store.getHistory() ``` diyerek son geçmişi çekebilirsiniz.
 
 ### Test
-Bağzı mutation lar uzun işlemler yapıyor olabilir (filtreleme, data dan veri çekme) bu tarz mutasyonların ne kadar sürede çalıştığını öğrenmek için store dan gelen test methodunu kullnıyoruz. Test metodunun aldığı parametreler şunlardır
+Bağzı mutation lar uzun işlemler yapıyor olabilir (filtreleme, data dan veri çekme) bu tarz mutasyonların ne kadar sürede çalıştığını öğrenmek için store dan gelen test methodunu kullanıyoruz. Test metodunun aldığı parametreler şunlardır
 ``` mutation name ```, ``` mutation arguments ```, ``` required time ```, ``` processes to run after ``` 
- ilk önce test yapılacak mutation ın ismi girilir. sonrasında o mutation ın kullanacağı argümanlar gönderilir , ardından bu mutation ın çalışma süresinin en fazla ne kadar olabileceği söylenir (mili saniye cinsinden girilir.) ve bunun ardından tüm test işlemleri bittiğinde çalışacak bir fonksiyon gönderilir. Bu gönderilen fonksiyon bir result parametresi alır, bu parametrede test sonuçları bulunur.
+ ilk önce test yapılacak mutation ın ismi girilir, sonrasında o mutation ın kullanacağı argümanlar gönderilir, ardından bu mutation ın çalışma süresinin en fazla ne kadar olabileceği söylenir (mili saniye cinsinden girilir.) ve bunun ardından tüm test işlemleri bittiğinde çalışacak bir fonksiyon gönderilir. Bu gönderilen fonksiyon bir result parametresi alır, bu parametrede test sonuçları bulunur.
 
-> !! test ettiğiniz mutation mutlaka return işlemi yapmalıdır.
+<div class="markdown-warn-text-block-client">
+test ettiğiniz mutation mutlaka return işlemi yapmalıdır.
+</div>
+
 
 ```javascript
 state: {
@@ -405,6 +501,7 @@ actions: {
         store.test('getData', block, 100, (result) => {
             console.log(...result) // test sonuçları result parametresi ile çekilir.
             // sonuçları düzgün görüntülemek için ...result diyiniz.
+            // sonuçlar konsola yazdırılacak formatta gelir.
         })
     }
 }
@@ -436,6 +533,14 @@ App.config(settings)
 <br>
 
 ## Tools
+<div class="markdown-info-text-block-client">
+Tool lar bir element e ulaşırken id, class veya, tag name ile ulaşır <br>
+id: #id-name <br>
+class: .class-name <br>
+tag: div <br>
+Gibi ulaşılması gerekir
+</div>
+
 Vanilya javascript yazdığımız için bağzı işlemleri uzun yoldan halletmek gerekiyor. Cookie.js static dosyasında bulundurduğu tools.js içerisinde sizin birçok işleminizi gerçekleştirecek kısa, basti ve kullanışlı araçlar sunar.  
 Çoğu tool etikete ulaşmak için etiket adı id kullanıyor ise #idName class kullanıyor ise .className alır, çünki tool lar genelde querySelector seçicisi kullanır.
 bu araçlar şunlardır.
@@ -502,6 +607,9 @@ get("#container")
 
 ### getAll
 gönderdiğiniz id, class veya etiket adına sahip tüm elemanları çeker.
+<div class="markdown-info-text-block-client">
+sonuç node list şeklinde return edilir.
+</div>
 
 ```javascript
 getAll("#container")
@@ -519,13 +627,19 @@ remove(".template")
 Reals bir değişken değiştiğinde onun kullanıldığı yerleri güncelleyemeye ve onu kullanan fonksiyonları değişim olduğunda tekrar çalıştırmaya yarar.  
 static dosyasından kullanacağınız real ı import ediniz
 
+ bu bir uyarı
+
+<div class="markdown-warn-text-block-client">
+Birden fazla yerde tekrar eden component veya parçacıklarda Real kullanımı önerilmez.
+</div>
+
 ### RealHtml
 bir değişkenin içerik olarak değişimini sağlar.  
 
 ```javascript
 import { addComponentFunctions } from '../static/add-component-functions.js'
 import { setHtml } from '../static/tools.js'
-import RealHtml from '../static/real.js'
+import RealHtml from '../static/reals/real-html.js'
 
 export const Count = (id) => {
     const count = new RealHtml(0, "#counter")
@@ -559,4 +673,8 @@ RealHtml bir etiketin html içeriğini düzenler.
 
 <br>
 
-Tüm dökümantasyanu okuduysanız [Tutorial](https://github.com/polat-poyraz/cookie.js/tree/master/tutorial) inceleyebilirsiniz.
+<div class="markdown-info-text-block-client">
+Tüm dökümantasyanu okuduysanız
+<a href="https://github.com/polat-poyraz/cookie.js/tree/master/tutorial"> Tutorial </a>
+inceleyebilirsiniz.
+</div>
