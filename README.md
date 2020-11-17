@@ -1,56 +1,3 @@
-<style>
-.markdown-warn-text-block-client,
-.markdown-info-text-block-client {
-    margin-bottom: 1em;
-    padding: 0.6em;
-    width: max-content;
-    border-radius: 5px;
-    max-width: 100%;
-    word-wrap: break-word;
-    font-weight: 600;
-}
-
-.markdown-info-text-block-client {
-    background: #CCECF4;
-    border-left: 6px solid #04B4DC;
-}
-
-.markdown-warn-text-block-client {
-    background: #FCFBBC;
-    border-left: 6px solid #FCF47C;
-}
-.markdown-info-block-client {
-    display: inline-flex;
-    width: max-content;
-    border-radius: 6px;
-    overflow: hidden;
-    height: max-content;
-    padding: 0;
-    margin-left: 1em;
-}
-
-.markdown-info-block-client > div {
-    height: 100%;
-    padding: 0.3em;
-}
-
-.markdown-info-block-client .left {
-    background: #1C1C24;
-    color: white;
-}
-
-.markdown-info-block-client .right {
-    background: #54CC7C;
-    font-weight: 600;
-}
-.string {
-    color: #F58787 !important;
-}
-.keyword {
-    color: #7C24DC !important;
-}
-</style>
-
 # Cookie.js
 
 <div class="markdown-info-block-client">
@@ -78,7 +25,7 @@
 
 <br>
 
-<div class="markdown-info-text-block-client">
+<div style="background: #CCECF4;">
 Bu README dosyası dökümantasyon niteliğinde yazılmıştır.
 </div>
 
