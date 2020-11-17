@@ -1,22 +1,10 @@
 # Cookie.js
 
-<div class="markdown-info-block-client">
-    <div class="left">
-        version
-    </div>
-    <div class="right">
-        1.4.7
-    </div>
-</div>
+Version | 1.4.7
+:---: | :---:
 
-<div class="markdown-info-block-client">
-    <div class="left">
-        author
-    </div>
-    <div class="right">
-        Polat Poyraz
-    </div>
-</div>
+Author | Polat Poyraz
+:---: | :---:
 
 <br>
 <br>
@@ -25,9 +13,7 @@
 
 <br>
 
-<div style="background: #CCECF4;">
-Bu README dosyası dökümantasyon niteliğinde yazılmıştır.
-</div>
+> ℹ️ Bu README dosyası dökümantasyon niteliğinde yazılmıştır.
 
 ## İçerik
 1. [Nedir?](#nedir)  
@@ -50,9 +36,8 @@ Bu README dosyası dökümantasyon niteliğinde yazılmıştır.
 ## Nedir
 Cookie.js web sayfalarınızın ön yüzünü dinamik halde, vanilya javascript kullanarak yazmanızı sağlayan bir kütüphanedir.  
 Cookie.js kullanarak daha kontrollü şekilde web sitelerinizi inşa edin.
-<div class="markdown-info-text-block-client">
-Cookie.js kullanmadan önce temel javascript bilginizin iyi olduğundan emin olun.
-</div>
+
+> ℹ️ Cookie.js kullanmadan önce temel javascript bilginizin iyi olduğundan emin olun.
 
 <br>
 
@@ -83,9 +68,7 @@ Cookie.js npm e yüklenmemiştir. GitHub üzerinden örnek bir cookie.js dosyas�
 Ardından terminal aracılığı ile cookie.js projenize girip
 ``` npm install ``` yapın, bu sayede gerekli paketler indirilmiş olacaktır. Ardından ``` npm start ``` yaparak cookie.js projeniz ``` localhost:1000 ``` adresinde çalışmaya başlayacaktır.
 
-<div class="markdown-warn-text-block-client">
-Aynı anda birden fazla cookie projesini npm de çalıştırmak hataya yol açabilir.
-</div>
+> ⚠️  Aynı anda birden fazla cookie projesini npm de çalıştırmak hataya yol açabilir.
 
 <br>
 
@@ -220,10 +203,7 @@ PropTypes bileşenlere gelen parametrelerin gelmek zorunda olup olmadığını v
 Bir NavLink componenti oluşturalım ve birkaç değer alıp bu değerleri kontrol ettirelim.  
 Önce bu bileşene birkaç parametre gönderelim.
 
-<div class="markdown-warn-text-block-client">
-propTypes a gönderilen props parametersi mutlaka obje olmalıdır. <br>
-Aynı zamanda controls fonksiyonuna da bir obje gönderilmelidir.
-</div>
+> ⚠️ propTypes a gönderilen props parametersi ve controls e gönderilen parametre mutlaka obje olmalıdır.
 
 ```javascript
 // propTypesControl ve typesConsumer import edildi
@@ -309,11 +289,10 @@ addComponentFunction bir fonksiyondur içerisine tek bir obje parametresi alır 
 Ve fonksiyonları kullanabilmek için ``` $.functionName() ``` diyerek ulaşılması gerekir.  
 Bir button componenti oluşturalım
 
-<div class="markdown-info-text-block-client">
-Birden fazla kez tekrar eden bir bileşende addComponentFunction kullanıldığında <br>
+
+> ℹ️ Birden fazla kez tekrar eden bir bileşende addComponentFunction kullanıldığında 
 eklenecek fonksiyon birkez eklenir ve diğer seferlerde tekrar aynı fonksiyon eklenmez, 
 bu sayede aynı fonksiyonun sürekli eklenmeye çalışması önlenir.
-</div>
 
 ```javascript
 import { propTypesControl, typesConsumer } from '../static/prop-type-control.js'
@@ -349,12 +328,10 @@ export const NameAlertButton = (props) => {
 Coox global state managment dır yani uygulamadaki verilerere işlemlere heryerden ulaşmayı sağlar.
 Cookie.js de işlemlerin çoğu state üzerinden yapılır. store u bir depo olarak veya bir mağza olarak düşünün.
 
-<div class="markdown-info-text-block-client">
-Genel işlemlerinizi store üzerinde yapın. <br>
-Eğer state üzerinde bir değişiklik yapmak isterseniz bunu mutations dan bir
-mutation ile yapın. <br>
+> ℹ️ Genel işlemlerinizi store üzerinde yapın.  
+Eğer state üzerinde bir değişiklik yapmak isterseniz bunu mutations dan bir mutation ile yapın.  
 Bir mutation çalıştırmak için ise actions içerisine bir action oluşturun ve store.use() ile mutation ı çalıştırın.
-</div>
+
 
 ```javascript
 import Coox from '../../managment/coox-manager.js'
@@ -428,9 +405,7 @@ Bağzı mutation lar uzun işlemler yapıyor olabilir (filtreleme, data dan veri
 ``` mutation name ```, ``` mutation arguments ```, ``` required time ```, ``` processes to run after ``` 
  ilk önce test yapılacak mutation ın ismi girilir, sonrasında o mutation ın kullanacağı argümanlar gönderilir, ardından bu mutation ın çalışma süresinin en fazla ne kadar olabileceği söylenir (mili saniye cinsinden girilir.) ve bunun ardından tüm test işlemleri bittiğinde çalışacak bir fonksiyon gönderilir. Bu gönderilen fonksiyon bir result parametresi alır, bu parametrede test sonuçları bulunur.
 
-<div class="markdown-warn-text-block-client">
-test ettiğiniz mutation mutlaka return işlemi yapmalıdır.
-</div>
+> ℹ️ test ettiğiniz mutation mutlaka return işlemi yapmalıdır.
 
 
 ```javascript
@@ -480,13 +455,11 @@ App.config(settings)
 <br>
 
 ## Tools
-<div class="markdown-info-text-block-client">
-Tool lar bir element e ulaşırken id, class veya, tag name ile ulaşır <br>
-id: #id-name <br>
-class: .class-name <br>
-tag: div <br>
+> ℹ️ Tool lar bir element e ulaşırken id, class veya, tag name ile ulaşır  
+id: #id-name  
+class: .class-name  
+tag: div  
 Gibi ulaşılması gerekir
-</div>
 
 Vanilya javascript yazdığımız için bağzı işlemleri uzun yoldan halletmek gerekiyor. Cookie.js static dosyasında bulundurduğu tools.js içerisinde sizin birçok işleminizi gerçekleştirecek kısa, basti ve kullanışlı araçlar sunar.  
 Çoğu tool etikete ulaşmak için etiket adı id kullanıyor ise #idName class kullanıyor ise .className alır, çünki tool lar genelde querySelector seçicisi kullanır.
@@ -554,8 +527,8 @@ get("#container")
 
 ### getAll
 gönderdiğiniz id, class veya etiket adına sahip tüm elemanları çeker.
-<div class="markdown-info-text-block-client">
-sonuç node list şeklinde return edilir.
+
+> ℹ️ sonuç node list şeklinde return edilir.
 </div>
 
 ```javascript
@@ -574,11 +547,7 @@ remove(".template")
 Reals bir değişken değiştiğinde onun kullanıldığı yerleri güncelleyemeye ve onu kullanan fonksiyonları değişim olduğunda tekrar çalıştırmaya yarar.  
 static dosyasından kullanacağınız real ı import ediniz
 
- bu bir uyarı
-
-<div class="markdown-warn-text-block-client">
-Birden fazla yerde tekrar eden component veya parçacıklarda Real kullanımı önerilmez.
-</div>
+> ⚠️ Birden fazla yerde tekrar eden component veya parçacıklarda Real kullanımı önerilmez.
 
 ### RealHtml
 bir değişkenin içerik olarak değişimini sağlar.  
@@ -620,8 +589,4 @@ RealHtml bir etiketin html içeriğini düzenler.
 
 <br>
 
-<div class="markdown-info-text-block-client">
-Tüm dökümantasyanu okuduysanız
-<a href="https://github.com/polat-poyraz/cookie.js/tree/master/tutorial"> Tutorial </a>
-inceleyebilirsiniz.
-</div>
+> ✅ Tüm dökümantasyanu okuduysanız [Tutorial](https://github.com/polat-poyraz/cookie.js/tree/master/tutorial) inceleyebilirsiniz.
