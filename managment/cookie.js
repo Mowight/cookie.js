@@ -1,4 +1,3 @@
-// new
 import Router from './router-manager.js'
 import Config from './config-manager.js'
 import { Template } from '../src/Template.js'
@@ -20,18 +19,15 @@ class Cookie {
         new Config(settings).configManager()
     }
 
-    pageRender(root, node) {
-        const { html, afterLoad } = node
+    async pageRender(root, node) {
+        const { html, afterLoad } = await node
         
-        new Promise((resolve, reject) => {
-            if (html !== undefined) {
-                root.innerHTML = Template(html)
-                resolve(true)
-            } else {
-                reject("html object not found please return html value as object in your pages")
-            }
-        }).then((res) => res ? (afterLoad !== undefined ? afterLoad() : null) : null)
-        .catch(err => console.error(err))
+        if (html !== undefined) {
+            root.innerHTML = await Template(html)
+            afterLoad !== undefined ? afterLoad() : null
+        } else {
+            console.error("html object not found please return html value as object in your pages")
+        }
     }
 }
 

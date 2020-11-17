@@ -3,32 +3,44 @@ export default class Config {
         this.settings = settings
     }
 
-    $title(title) {
-        if (title !== undefined) {
-            document.head.innerHTML += (`<title> ${title} </title>`)
+    async $title(titleContent) {
+        const title = await document.createElement("title")
+        const content = await document.createTextNode(titleContent)
+        await title.appendChild(content)
+
+        if (titleContent !== undefined) {
+            document.head.appendChild(title)
         } else {
             document.head.innerHTML += (`<title> Cookie App </title>`)
         }
     }
 
-    $links(links) {
+    async $links(links) {
         for (let i in links) {
-            const rel = links[i].rel
-            const href = links[i].href
-            document.head.innerHTML += (`<link rel="${rel}" href="${href}" />`)
+            const rel = await links[i].rel
+            const href = await links[i].href
+            const link = await document.createElement("link")
+            await link.setAttribute("rel", rel)
+            await link.setAttribute("href", href)
+
+            document.head.appendChild(link)
         }
     }
 
-    $styles(styles) {
+    async $styles(styles) {
         for (let i in styles) {
             const rel = styles[i].rel
             const fileName = styles[i].fileName
-            document.head.innerHTML += (`<link rel="${rel}" href="../src/styles/${fileName}" />`)
+            const link = await document.createElement("link")
+            await link.setAttribute("rel", rel)
+            await link.setAttribute("href", `../src/styles/${fileName}`)
+
+            document.head.appendChild(link)
         }
     }
 
-    configManager() {
-        const { settings } = this
+    async configManager() {
+        const { settings } = await this
 
         this.$title(settings.title)
         this.$styles(settings.styles)

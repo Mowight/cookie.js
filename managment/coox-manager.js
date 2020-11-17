@@ -25,11 +25,11 @@ export default class Coox {
         }
     }
 
-    getHistory() {
+    async getHistory() {
         if (!this.history.mode) {
             console.warn('Past values ​​cannot be imported without creating a history. Create a history with "createHistory"')
         } else {
-            return this.history.data
+            return await this.history.data
         }
     }
 
@@ -50,12 +50,15 @@ export default class Coox {
         const red = "#FC9C9C"
         let count = 0
         const counter = setInterval(() => count++, 0)
+
         if (this.mutations[mutationName] !== undefined) {
             await this.mutations[mutationName](this.state, data)
         } else {
             console.error(`A mutation named '${mutationName}' was not found.`)
         }
+
         clearInterval(counter)
+
         const title = "Coox Store Test Results"
         const name = `mutation name: ${mutationName}`
         const reqSpeed = `required speed: ${isSpeed}ms`
@@ -65,6 +68,7 @@ export default class Coox {
         const line = "----------------------------------------"
         const result = await [`%c ${title}\n${line}\n${table}\n${line}\n`, `background: ${count > isSpeed ? red : green}; color: 
     black`]
+    
         after(result)
     }
 
@@ -77,15 +81,15 @@ export default class Coox {
         }
 
         if (this.state === undefined) {
-            console.error("state not found in coox")
+            console.error("state not found in store")
         }
 
         if (this.mutations === undefined) {
-            console.error("mutation not found in coox")
+            console.error("mutation not found in store")
         }
 
         if  (this.actions === undefined) {
-            console.error("actions not found in coox")
+            console.error("actions not found in store")
         }
     }
 }

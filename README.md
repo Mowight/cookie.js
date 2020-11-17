@@ -435,8 +435,6 @@ actions: {
 config.js de html dosyanıza eklenecek bir takım dosyaları barındırır ve head kısmı ile ilgilenir.
 
 ```javascript
-import App from '../managment/cookie.js' // uygulamanız
-
 const settings = {
     title: "Example Cookie.js App", // sayfa başlığı
     styles: [
@@ -448,8 +446,7 @@ const settings = {
     ]
 }
 
-// uygulama ayarlarının başlatılması.
-App.config(settings)
+export default settings
 ```
 
 <br>

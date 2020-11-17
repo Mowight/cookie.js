@@ -1,4 +1,5 @@
-import cooxConsumer from '../src/store/index.js'
+import store from '../src/store/index.js'
+import settings from '../src/config.js'
 import App from './cookie.js'
 
 export default class Router {
@@ -10,19 +11,21 @@ export default class Router {
         return window.location.pathname
     }
 
-    createRouter(defaultPage) {
+    async createRouter(defaultPage) {
+        await App.config(settings)
+
         const { roots, getPathName } = this
         let defaultCount = 0
 
         for (let count in roots) {
-            const path = roots[count].path
-            const page = roots[count].page
-            const pathName = getPathName()
+            const path = await roots[count].path
+            const page = await roots[count].page
+            const pathName = await getPathName()
 
             if (path === pathName) {
-                const { state, actions } = cooxConsumer
+                const { state, actions } = await store
 
-                App.pageRender(
+                await App.pageRender(
                     document.getElementById("seed"),
                     page({state, actions})
                 )
